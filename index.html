@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#f4ecd8" />
+    <title>3D 翻页阅读器 · Web MVP</title>
+  </head>
+  <body>
+    <div id="app" class="app">
+      <div class="device">
+        <div class="device__statusbar">
+          <span class="device__time" id="clock">9:41</span>
+          <span class="device__title" id="doc-title">阅读体验设计</span>
+          <span class="device__page" data-testid="page-indicator">1 / 1</span>
+        </div>
+
+        <!-- 阅读区：所有手势落在这里 -->
+        <div class="reader" id="reader" data-testid="reader">
+          <div class="stage" id="stage">
+            <div class="page-slot" id="page-slot" data-testid="page-slot">
+              <div class="page page--static" id="page-static" data-testid="page-static"></div>
+              <div class="cast-shadow" id="cast-shadow" aria-hidden="true"></div>
+              <div class="flip-layer" id="flip-layer" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="progress-rail" aria-hidden="true">
+            <div class="progress-rail__fill" id="progress-fill"></div>
+          </div>
+
+          <div class="hud" id="hud">
+            <span class="hud__hint" id="hint">点左/右翻页 · 点中间设置 · 左右拖拽 · 长按选字</span>
+            <span class="hud__state" data-testid="gesture-state">idle</span>
+          </div>
+
+          <!-- 设置面板（中间 tap 唤起） -->
+          <div class="panel" id="panel" data-testid="settings-panel" hidden>
+            <div class="panel__grip"></div>
+            <div class="panel__head">
+              <h2>阅读设置</h2>
+              <button class="panel__close" id="panel-close" data-testid="panel-close" aria-label="关闭">✕</button>
+            </div>
+            <div class="panel__body">
+              <div class="row">
+                <label>字号</label>
+                <input type="range" id="set-fontSize" data-testid="set-fontSize" min="13" max="34" step="1" />
+                <output id="out-fontSize">17</output>
+              </div>
+              <div class="row">
+                <label>行距</label>
+                <input type="range" id="set-lineHeight" data-testid="set-lineHeight" min="1.2" max="2.4" step="0.05" />
+                <output id="out-lineHeight">1.75</output>
+              </div>
+              <div class="row">
+                <label>段距</label>
+                <input type="range" id="set-paragraphSpacing" data-testid="set-paragraphSpacing" min="0" max="40" step="1" />
+                <output id="out-paragraphSpacing">12</output>
+              </div>
+              <div class="row">
+                <label>边距</label>
+                <input type="range" id="set-padding" data-testid="set-padding" min="12" max="72" step="2" />
+                <output id="out-padding">22</output>
+              </div>
+              <div class="row row--colors">
+                <label>配色</label>
+                <div class="swatches" id="swatches">
+                  <button data-theme="light" data-testid="theme-light">白</button>
+                  <button data-theme="sepia" data-testid="theme-sepia">护眼</button>
+                  <button data-theme="dark" data-testid="theme-dark">夜间</button>
+                </div>
+              </div>
+              <p class="panel__note" id="panel-note">设置已自动保存，分页已按新参数重排。</p>
+            </div>
+          </div>
+
+          <div class="selection-bar" id="selection-bar" data-testid="selection-bar" hidden>
+            <span>已退出选区，翻页手势恢复</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/app/main.ts"></script>
+  </body>
+</html>

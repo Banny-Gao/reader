@@ -1,0 +1,23 @@
+# 依赖与构建产物
+node_modules/
+dist/
+*.tsbuildinfo
+
+# 测试与调试产物
+e2e/.artifacts/
+playwright-report/
+test-results/
+
+# 本地环境
+.env
+.env.local
+.env.browser
+
+# 编辑器 / 系统
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# 说明：shots/ 里的截图是验收证据（翻页中间态、分页效果），
+# 体积约 6MB，决定提交以保留可追溯的视觉证据；如需精简可在此忽略。
